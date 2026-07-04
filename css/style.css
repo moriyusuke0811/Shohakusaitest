@@ -258,7 +258,7 @@ body.is-splash-active {
   background: var(--color-accent);
 }
 
-/* ----------- 6. カウントダウン ---------- */
+/* ----------- 6. カウントダウン ----------- */
 .countdown {
   text-align: center;
   padding: var(--space-l) var(--space-m) var(--space-m);
