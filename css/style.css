@@ -1,0 +1,565 @@
+/* ============================================================
+   松柏祭 案内サイト スタイルシート
+   構成: 変数定義 → リセット → 共通パーツ → セクション別 → タブバー
+         → モーダル → アニメーション → レスポンシブ
+   ============================================================ */
+
+/* ---------- 1. カラー・変数定義( :root で一元管理 ) ---------- */
+:root {
+  /* ベースカラー */
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-sub: #555555;
+
+  /* アクセント(ターコイズグリーン) */
+  --color-accent: #2fbfb2;
+  --color-accent-dark: #1f9a90;
+  --color-accent-light: #7fd9d1;
+
+  /* パステルカラー(装飾の丸・ストライプ用) */
+  --pastel-yellow: #f5e6a8;
+  --pastel-pink:   #f6c9d6;
+  --pastel-blue:   #ade3ef;
+  --pastel-purple: #d9cdf0;
+  --pastel-green:  #c8edd1;
+
+  /* 半透明版(背景の丸用) */
+  --pastel-yellow-t: rgba(245, 230, 168, 0.55);
+  --pastel-pink-t:   rgba(246, 201, 214, 0.55);
+  --pastel-blue-t:   rgba(173, 227, 239, 0.55);
+  --pastel-purple-t: rgba(217, 205, 240, 0.55);
+  --pastel-green-t:  rgba(200, 237, 209, 0.55);
+
+  /* 影・角丸・余白 */
+  --radius-s: 12px;
+  --radius-m: 20px;
+  --radius-l: 32px;
+  --shadow-soft: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 10px 28px rgba(0, 0, 0, 0.14);
+  --space-s: 12px;
+  --space-m: 24px;
+  --space-l: 48px;
+
+  /* タブバーの高さ(コンテンツの下部余白計算に使用) */
+  --tabbar-height: 78px;
+
+  /* フォント */
+  --font-heading: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', sans-serif;
+  --font-body: 'M PLUS Rounded 1c', 'Hiragino Kaku Gothic ProN', sans-serif;
+}
+
+/* ---------- 2. リセット ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.7;
+  overflow-x: hidden;
+  /* タブバー分の余白を確保 */
+  padding-bottom: calc(var(--tabbar-height) + 12px);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---------- 3. 背景の半透明の丸(装飾) ---------- */
+/* 全体を覆う固定の装飾レイヤー。クリックを邪魔しないよう pointer-events: none */
+.bg-decoration {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-decoration .circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(0.5px);
+}
+
+/* 各丸のサイズ・位置・色をランダム風に配置 */
+.bg-decoration .c1 { width: 180px; height: 180px; top: 8%;  left: -60px; background: var(--pastel-yellow-t); }
+.bg-decoration .c2 { width: 220px; height: 220px; top: 4%;  right: -80px; background: var(--pastel-green-t); }
+.bg-decoration .c3 { width: 160px; height: 160px; top: 30%; left: 4%;   background: var(--pastel-blue-t); }
+.bg-decoration .c4 { width: 240px; height: 240px; top: 24%; right: -90px; background: var(--pastel-pink-t); }
+.bg-decoration .c5 { width: 150px; height: 150px; top: 55%; right: 6%;  background: var(--pastel-purple-t); }
+.bg-decoration .c6 { width: 190px; height: 190px; top: 62%; left: -70px; background: var(--pastel-pink-t); }
+.bg-decoration .c7 { width: 170px; height: 170px; top: 82%; right: -60px; background: var(--pastel-green-t); }
+.bg-decoration .c8 { width: 140px; height: 140px; top: 78%; left: 8%;   background: var(--pastel-yellow-t); }
+
+/* ---------- 4. Hero セクション ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  text-align: center;
+  /* 上:淡いストライプ → 下:ターコイズへのグラデーション */
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 38%, var(--color-accent-light) 62%, var(--color-accent) 100%),
+    repeating-linear-gradient(
+      90deg,
+      var(--pastel-yellow) 0 8%,
+      var(--pastel-pink) 8% 16%,
+      var(--pastel-blue) 16% 24%,
+      var(--pastel-purple) 24% 32%,
+      var(--pastel-green) 32% 40%,
+      var(--pastel-yellow) 40% 48%,
+      var(--pastel-pink) 48% 56%,
+      var(--pastel-blue) 56% 64%,
+      var(--pastel-purple) 64% 72%,
+      var(--pastel-green) 72% 80%,
+      var(--pastel-yellow) 80% 88%,
+      var(--pastel-pink) 88% 100%
+    );
+}
+
+.hero__logo {
+  width: min(46vw, 220px);
+  margin-top: var(--space-l);
+  animation: fadeInDown 1s ease both;
+}
+
+/* スクロールを促す矢印アニメーション */
+.hero__scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: -6px;
+  color: #ffffff;
+  margin: var(--space-m) 0;
+}
+
+.hero__scroll i {
+  font-size: 1.6rem;
+  animation: bounceDown 1.6s ease-in-out infinite;
+  opacity: 0.9;
+}
+.hero__scroll i:nth-child(2) { animation-delay: 0.15s; }
+.hero__scroll i:nth-child(3) { animation-delay: 0.3s; }
+
+/* Hero下部の帯(祭名表示) */
+.hero__footer-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  color: #ffffff;
+  font-weight: 700;
+  padding: var(--space-s) var(--space-m);
+}
+
+.hero__footer-bar .badge {
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.hero__footer-bar .title {
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- 5. カウントダウン ---------- */
+.countdown {
+  text-align: center;
+  padding: var(--space-l) var(--space-m) var(--space-m);
+}
+
+.countdown__label {
+  font-size: 1rem;
+  color: var(--color-text-sub);
+  margin-bottom: 6px;
+}
+
+.countdown__number {
+  font-size: clamp(3.5rem, 16vw, 5.5rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.countdown__number span {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+/* ---------- 6. メニューボタン(タイムテーブル/マップ/展示) ---------- */
+.menu-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-s);
+  padding: var(--space-m);
+  flex-wrap: wrap;
+}
+
+.menu-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 96px;
+  padding: var(--space-s) 4px;
+  background: #ffffff;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-soft);
+  color: var(--color-accent-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.menu-btn i {
+  font-size: 1.4rem;
+}
+
+.menu-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+  background: var(--pastel-blue-t);
+}
+
+.menu-btn:active {
+  transform: scale(0.94);
+}
+
+/* ---------- 7. 全体テーマ / お知らせ ボタン(共通丸ボタン) ---------- */
+.section-cta {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-m);
+}
+
+.pill-btn {
+  padding: 14px 40px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.pill-btn:hover {
+  background: var(--color-accent-dark);
+  box-shadow: var(--shadow-strong);
+  transform: translateY(-3px);
+}
+
+.pill-btn:active {
+  transform: scale(0.95);
+}
+
+/* テーマロゴ表示エリア(Capioneerロゴ) */
+.theme-logo-preview {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-m);
+}
+
+.theme-logo-preview img {
+  width: min(70vw, 280px);
+}
+
+/* ---------- 8. フッター ---------- */
+.site-footer {
+  margin: var(--space-l) var(--space-s) 0;
+  background: var(--color-accent);
+  color: #ffffff;
+  border-radius: var(--radius-l) var(--radius-l) 0 0;
+  padding: var(--space-l) var(--space-m);
+  text-align: left;
+}
+
+.site-footer .footer-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: var(--space-s);
+}
+
+.site-footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: var(--space-m);
+}
+
+.site-footer .footer-copy {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+/* ---------- 9. 下部タブバー ---------- */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--tabbar-height);
+  background: #ffffff;
+  border-radius: var(--radius-l) var(--radius-l) 0 0;
+  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 100;
+  padding: 0 6px;
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ececec;
+  color: #9a9a9a;
+  font-size: 0.6rem;
+  transition: all 0.25s ease;
+}
+
+.tab-item i {
+  font-size: 1.05rem;
+  transition: all 0.25s ease;
+}
+
+.tab-item span {
+  font-size: 0.55rem;
+  font-weight: 600;
+}
+
+/* 中央タブ(マップ)は大きい丸+アクセントカラー */
+.tab-item--center {
+  width: 68px;
+  height: 68px;
+  background: var(--color-accent);
+  color: #ffffff;
+  margin-top: -22px;
+  box-shadow: 0 6px 14px rgba(47, 191, 178, 0.45);
+}
+
+.tab-item--center i {
+  font-size: 1.5rem;
+}
+
+.tab-item--center span {
+  font-size: 0.58rem;
+  color: #ffffff;
+}
+
+/* 選択中タブの強調(中央以外) */
+.tab-item.is-active:not(.tab-item--center) {
+  background: var(--pastel-blue-t);
+  color: var(--color-accent-dark);
+}
+
+.tab-item.is-active:not(.tab-item--center) i {
+  transform: scale(1.2);
+  color: var(--color-accent-dark);
+}
+
+/* 中央タブが選択中の場合は少し拡大 */
+.tab-item--center.is-active {
+  animation: tabPop 0.35s ease;
+}
+
+.tab-item:active {
+  transform: scale(0.9);
+}
+
+/* ---------- 10. モーダル(全体テーマ) ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: var(--space-m);
+
+  /* JSで .is-visible を付け外しして表示制御 */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-box {
+  background: #ffffff;
+  border-radius: var(--radius-l);
+  max-width: 420px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  position: relative;
+  text-align: center;
+  box-shadow: var(--shadow-strong);
+  transform: scale(0.85) translateY(20px);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.is-visible .modal-box {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-s);
+  right: var(--space-s);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f1f1f1;
+  font-size: 1rem;
+  color: var(--color-text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+  background: var(--pastel-pink-t);
+}
+
+.modal-close:active {
+  transform: scale(0.9);
+}
+
+.modal-box img {
+  width: min(60vw, 240px);
+  margin: 0 auto var(--space-m);
+}
+
+.modal-box h2 {
+  font-size: 1.3rem;
+  margin-bottom: var(--space-s);
+  color: var(--color-accent-dark);
+}
+
+.modal-box p {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  text-align: left;
+}
+
+/* ---------- 11. 汎用アニメーション ---------- */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50%      { transform: translateY(8px); opacity: 1; }
+}
+
+@keyframes tabPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* スクロール時フェードイン用(JSでクラス付与) */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 12. レスポンシブ対応(モバイルファースト → タブレット/PC拡張) ---------- */
+
+/* タブレット(iPad想定) */
+@media (min-width: 768px) {
+  .countdown__number {
+    font-size: 6rem;
+  }
+
+  .menu-btn {
+    width: 130px;
+    font-size: 0.9rem;
+  }
+
+  .menu-btn i {
+    font-size: 1.8rem;
+  }
+
+  .tab-bar {
+    max-width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--radius-l);
+    bottom: 12px;
+    box-shadow: var(--shadow-strong);
+  }
+}
+
+/* PC想定:全体を中央寄せしてカード感を出す */
+@media (min-width: 1024px) {
+  body {
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.06);
+  }
+
+  .hero__logo {
+    width: 220px;
+  }
+
+  .menu-buttons {
+    gap: var(--space-l);
+  }
+}

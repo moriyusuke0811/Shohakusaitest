@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>第78回 松柏祭 | 岡山操山 松柏祭 公式案内サイト</title>
+  <meta name="description" content="岡山操山高等学校 第78回 松柏祭の公式案内サイト。タイムテーブル・マップ・展示情報・お知らせをご案内します。">
+
+  <!-- Google Fonts: 丸みのある見出し/本文フォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome(アイコン) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- サイト共通スタイル -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ============ 背景装飾(半透明の丸) ============ -->
+  <!-- aria-hidden: 装飾要素のためスクリーンリーダーからは非表示 -->
+  <div class="bg-decoration" aria-hidden="true">
+    <span class="circle c1"></span>
+    <span class="circle c2"></span>
+    <span class="circle c3"></span>
+    <span class="circle c4"></span>
+    <span class="circle c5"></span>
+    <span class="circle c6"></span>
+    <span class="circle c7"></span>
+    <span class="circle c8"></span>
+  </div>
+
+  <!-- ============ Hero セクション ============ -->
+  <header class="hero" id="hero">
+    <img class="hero__logo" src="assets/images/logo-shohakusai.svg" alt="第78回 岡山操山 松柏祭 ロゴ">
+
+    <!-- スクロールを促す矢印アニメーション -->
+    <div class="hero__scroll" aria-hidden="true">
+      <i class="fa-solid fa-chevron-down"></i>
+      <i class="fa-solid fa-chevron-down"></i>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <div class="hero__footer-bar">
+      <span class="badge">第78回</span>
+      <span class="title">松柏祭</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ カウントダウン ============ -->
+    <section class="countdown fade-in-section" aria-label="開会式カウントダウン">
+      <p class="countdown__label">開会式まであと</p>
+      <p class="countdown__number">
+        <span id="countdown-days">--</span><span>日</span>
+      </p>
+    </section>
+
+    <!-- ============ メニュー(タイムテーブル/マップ/展示) ============ -->
+    <nav class="menu-buttons fade-in-section" aria-label="主要メニュー">
+      <a href="pages/timetable.html" class="menu-btn">
+        <i class="fa-regular fa-clock"></i>
+        <span>タイムテーブル</span>
+      </a>
+      <a href="pages/map.html" class="menu-btn">
+        <i class="fa-solid fa-map"></i>
+        <span>マップアプリ</span>
+      </a>
+      <a href="pages/exhibits.html" class="menu-btn">
+        <i class="fa-solid fa-list-ul"></i>
+        <span>展示索引</span>
+      </a>
+    </nav>
+
+    <!-- ============ 全体テーマ ============ -->
+    <section class="section-cta fade-in-section" aria-label="全体テーマ">
+      <button class="pill-btn" id="theme-open-btn" type="button">全体テーマ</button>
+    </section>
+
+    <!-- ============ お知らせ ============ -->
+    <section class="section-cta fade-in-section" aria-label="お知らせ">
+      <a href="pages/news.html" class="pill-btn">お知らせ</a>
+    </section>
+  </main>
+
+  <!-- ============ フッター ============ -->
+  <footer class="site-footer fade-in-section">
+    <p class="footer-title">第78回 松柏祭</p>
+    <ul class="footer-links">
+      <li>開催概要</li>
+      <li>アクセス</li>
+      <li>お問い合わせ</li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 岡山操山高等学校 松柏祭実行委員会</p>
+  </footer>
+
+  <!-- ============ 全体テーマ モーダル ============ -->
+  <div class="modal-overlay" id="theme-modal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
+      <button class="modal-close" id="theme-close-btn" type="button" aria-label="閉じる">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img src="assets/images/logo-capioneer.svg" alt="全体テーマ Capioneer ロゴ">
+      <h2 id="theme-modal-title">Capioneer</h2>
+      <p>
+        「Capion(先駆者/切り開く者)」と「Pioneer」を掛け合わせたテーマ。
+        新しい一歩を踏み出す勇気と、仲間とともに未知の景色を切り開いていく思いを込めています。
+        今年の松柏祭も、生徒一人ひとりが主役となり、忘れられない一日を作り上げます。
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ 下部タブバー(画面最下部に固定) ============ -->
+  <nav class="tab-bar" aria-label="下部ナビゲーション">
+    <a href="#hero" class="tab-item is-active" data-tab="home">
+      <i class="fa-solid fa-house"></i>
+      <span>ホーム</span>
+    </a>
+    <a href="pages/timetable.html" class="tab-item" data-tab="timetable">
+      <i class="fa-regular fa-clock"></i>
+      <span>タイムテーブル</span>
+    </a>
+    <a href="pages/map.html" class="tab-item tab-item--center" data-tab="map">
+      <i class="fa-solid fa-map"></i>
+      <span>マップ</span>
+    </a>
+    <a href="pages/exhibits.html" class="tab-item" data-tab="exhibits">
+      <i class="fa-solid fa-list-ul"></i>
+      <span>展示</span>
+    </a>
+    <a href="pages/news.html" class="tab-item" data-tab="more">
+      <i class="fa-solid fa-ellipsis"></i>
+      <span>その他</span>
+    </a>
+  </nav>
+
+  <!-- サイト共通スクリプト -->
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
