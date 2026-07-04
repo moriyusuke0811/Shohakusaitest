@@ -16,12 +16,24 @@
   --color-accent-dark: #1f9a90;
   --color-accent-light: #7fd9d1;
 
-  /* パステルカラー(装飾の丸・ストライプ用) */
+  /* パステルカラー(装飾の丸用) */
   --pastel-yellow: #f5e6a8;
   --pastel-pink:   #f6c9d6;
   --pastel-blue:   #ade3ef;
   --pastel-purple: #d9cdf0;
   --pastel-green:  #c8edd1;
+
+  /* Hero背景ストライプ専用カラー(指定画像から抽出した10色を左から順に) */
+  --stripe-1: #f9d3f1;
+  --stripe-2: #f9f1d3;
+  --stripe-3: #d4d3f9;
+  --stripe-4: #f9edd3;
+  --stripe-5: #f8f9d3;
+  --stripe-6: #d3f9d5;
+  --stripe-7: #d3f2f9;
+  --stripe-8: #e7d3f9;
+  --stripe-9: #f9d3ec;
+  --stripe-10: #f9d3d3;
 
   /* 半透明版(背景の丸用) */
   --pastel-yellow-t: rgba(245, 230, 168, 0.55);
@@ -176,18 +188,16 @@ body.is-splash-active {
     linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 38%, var(--color-accent-light) 62%, var(--color-accent) 100%),
     repeating-linear-gradient(
       90deg,
-      var(--pastel-yellow) 0 8%,
-      var(--pastel-pink) 8% 16%,
-      var(--pastel-blue) 16% 24%,
-      var(--pastel-purple) 24% 32%,
-      var(--pastel-green) 32% 40%,
-      var(--pastel-yellow) 40% 48%,
-      var(--pastel-pink) 48% 56%,
-      var(--pastel-blue) 56% 64%,
-      var(--pastel-purple) 64% 72%,
-      var(--pastel-green) 72% 80%,
-      var(--pastel-yellow) 80% 88%,
-      var(--pastel-pink) 88% 100%
+      var(--stripe-1)  0%   10%,
+      var(--stripe-2)  10%  20%,
+      var(--stripe-3)  20%  30%,
+      var(--stripe-4)  30%  40%,
+      var(--stripe-5)  40%  50%,
+      var(--stripe-6)  50%  60%,
+      var(--stripe-7)  60%  70%,
+      var(--stripe-8)  70%  80%,
+      var(--stripe-9)  80%  90%,
+      var(--stripe-10) 90%  100%
     );
 }
 
