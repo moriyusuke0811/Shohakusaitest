@@ -286,52 +286,114 @@ body.is-splash-active {
 .menu-buttons {
   display: flex;
   justify-content: center;
-  gap: var(--space-s);
+  gap: var(--space-m);
   padding: var(--space-m);
   flex-wrap: wrap;
 }
 
+/* 円形アイコン+外側ラベルのデザイン */
 .menu-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  width: 96px;
-  padding: var(--space-s) 4px;
-  background: #ffffff;
-  border: 2px solid var(--color-accent);
-  border-radius: var(--radius-m);
-  box-shadow: var(--shadow-soft);
+  gap: 10px;
   color: var(--color-accent-dark);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
+}
+
+.menu-btn__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid var(--color-accent);
+  box-shadow: var(--shadow-soft);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.menu-btn i {
-  font-size: 1.4rem;
+.menu-btn__circle i {
+  font-size: 1.7rem;
+  color: var(--color-accent);
+  transition: color 0.2s ease;
 }
 
-.menu-btn:hover {
+.menu-btn__label {
+  text-align: center;
+  line-height: 1.3;
+}
+
+.menu-btn:hover .menu-btn__circle {
   transform: translateY(-4px);
   box-shadow: var(--shadow-strong);
   background: var(--pastel-blue-t);
 }
 
-.menu-btn:active {
+.menu-btn:active .menu-btn__circle {
   transform: scale(0.94);
 }
 
-/* ---------- 8. 全体テーマ / お知らせ タイトルラベル(共通・アニメーションなし) ---------- */
-.section-cta {
-  display: flex;
-  justify-content: center;
-  padding: var(--space-m);
+/* ---------- 7.5 主な日程 ---------- */
+.schedule {
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  text-align: center;
 }
+
+.schedule__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-l) var(--space-m);
+  margin-top: var(--space-m);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.schedule__day {
+  flex: 1 1 160px;
+  max-width: 220px;
+}
+
+.schedule__date {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.schedule__note {
+  font-size: 0.68rem;
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-s);
+}
+
+.schedule__list {
+  text-align: left;
+}
+
+.schedule__list li {
+  position: relative;
+  padding-left: 1.1em;
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+}
+
+.schedule__list li::before {
+  content: '・';
+  position: absolute;
+  left: 0;
+}
+
+/* ---------- 8. 全体テーマ / NEWS / SNS タイトルラベル(共通・アニメーションなし) ---------- */
 
 /* Hero下部の帯(.hero__footer-bar)と統一感を持たせた、常に静止したタイトルラベル。
    カーソルによるホバー/クリック時の演出(拡大・浮き上がり・色変化)は一切行わない。 */
 .pill-btn {
+  display: inline-block;
   padding: 10px 32px;
   background: var(--color-accent);
   color: #ffffff;
@@ -358,6 +420,14 @@ body.is-splash-active {
   margin-bottom: var(--space-m);
 }
 
+/* モバイル:ロゴ→説明文の縦積み・中央寄せ */
+.theme-section__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--space-m);
+}
+
 .theme-section__logo {
   width: min(30vw, 130px);
   margin: 0 auto var(--space-m);
@@ -369,6 +439,132 @@ body.is-splash-active {
   text-align: left;
   font-size: 0.9rem;
   color: var(--color-text-sub);
+}
+
+/* タブレット以上:ロゴを左、説明文を右に並べる横並びレイアウト */
+@media (min-width: 768px) {
+  .theme-section__body {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-l);
+    text-align: left;
+  }
+
+  .theme-section__logo {
+    flex: 0 0 auto;
+    width: min(22vw, 220px);
+    margin: 0;
+  }
+
+  .theme-section__desc {
+    margin: 0;
+  }
+}
+
+/* ---------- 8.6 NEWS セクション ---------- */
+.news {
+  text-align: center;
+  padding: var(--space-l) var(--space-m);
+}
+
+.news__grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  margin-top: var(--space-m);
+}
+
+.news__item {
+  display: block;
+  width: 130px;
+  height: 130px;
+  border: 2.5px solid var(--color-accent);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.news__item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-soft);
+}
+
+.news__placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #e6e6e6;
+}
+
+.news__viewall {
+  display: inline-block;
+  margin-top: var(--space-m);
+  color: var(--color-text-sub);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- 8.7 SNS・他 セクション ---------- */
+.sns {
+  text-align: center;
+  padding: var(--space-l) var(--space-m);
+}
+
+.sns__grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-l) var(--space-m);
+  margin-top: var(--space-m);
+}
+
+.sns__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 96px;
+  color: var(--color-text);
+}
+
+.sns__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sns__item:hover .sns__icon {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+}
+
+.sns__icon--school {
+  background: #1f3a8f;
+}
+
+.sns__icon--junior {
+  background: var(--color-accent-dark);
+}
+
+.sns__icon--capioneer {
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+
+.sns__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 /* ---------- 9. フッター ---------- */

@@ -70,45 +70,128 @@
       <!-- ============ メニュー(タイムテーブル/マップ/展示) ============ -->
       <nav class="menu-buttons fade-in-section" aria-label="主要メニュー">
         <a href="pages/timetable.html" class="menu-btn">
-          <i class="fa-regular fa-clock"></i>
-          <span>日程</span>
+          <span class="menu-btn__circle"><i class="fa-regular fa-clock"></i></span>
+          <span class="menu-btn__label">タイムテーブル</span>
         </a>
         <a href="pages/map.html" class="menu-btn">
-          <i class="fa-solid fa-map"></i>
-          <span>マップアプリ</span>
+          <span class="menu-btn__circle"><i class="fa-solid fa-map"></i></span>
+          <span class="menu-btn__label">マップアプリ</span>
         </a>
         <a href="pages/exhibits.html" class="menu-btn">
-          <i class="fa-solid fa-list-ul"></i>
-          <span>展示索引</span>
+          <span class="menu-btn__circle"><i class="fa-solid fa-list-ul"></i></span>
+          <span class="menu-btn__label">展示索引</span>
         </a>
       </nav>
+
+      <!-- ============ 主な日程 ============ -->
+      <section class="schedule fade-in-section" aria-label="主な日程">
+        <p class="pill-btn">主な日程</p>
+        <div class="schedule__grid">
+          <div class="schedule__day">
+            <p class="schedule__date">9月4日</p>
+            <p class="schedule__note">生徒・保護者のみ</p>
+            <ul class="schedule__list">
+              <li>開会式</li>
+              <li>中学合唱</li>
+              <li>操山王</li>
+              <li>高2ステージ発表</li>
+            </ul>
+          </div>
+          <div class="schedule__day">
+            <p class="schedule__date">9月5日</p>
+            <p class="schedule__note">一般開放</p>
+            <ul class="schedule__list">
+              <li>高1クラス展示</li>
+              <li>文化部等展示</li>
+              <li>模擬店</li>
+            </ul>
+          </div>
+          <div class="schedule__day">
+            <p class="schedule__date">9月7日</p>
+            <p class="schedule__note">生徒・保護者のみ</p>
+            <ul class="schedule__list">
+              <li>体育の部</li>
+              <li>高3アリーナ演技</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <!-- ============ 全体テーマ(常時表示・モーダルは廃止) ============ -->
       <section class="theme-section fade-in-section" aria-label="全体テーマ">
         <p class="pill-btn">全体テーマ</p>
-        <img class="theme-section__logo" src="images/logo-capioneer.svg" alt="全体テーマ Capioneer ロゴ">
-        <p class="theme-section__desc">
-          CaPioneerはCapacityとPioneerという2つの単語が組み合わさっています。Capacityには
-          一人ひとりが持てる力を最大限に発揮し、輝くという願いがあり、みなさんの溢れ出す個性をいろんな方面で活かし、全員が主役になるような松柏祭にしたいという思いが込められています。もう一つのPioneerには前例のない荒野に一歩を踏み出し、自ら道を切り拓くことで、後に続く人々を導く存在でありたいという願いがあります。挑戦を恐れず、全員で協力して松柏祭を思い出に残るものにしたいという思いが込められています。
-        </p>
+        <div class="theme-section__body">
+          <img class="theme-section__logo" src="images/logo-capioneer.svg" alt="全体テーマ Capioneer ロゴ">
+          <p class="theme-section__desc">
+            CaPioneerはCapacityとPioneerという2つの単語が組み合わさっています。Capacityには
+            一人ひとりが持てる力を最大限に発揮し、輝くという願いがあり、みなさんの溢れ出す個性をいろんな方面で活かし、全員が主役になるような松柏祭にしたいという思いが込められています。もう一つのPioneerには前例のない荒野に一歩を踏み出し、自ら道を切り拓くことで、後に続く人々を導く存在でありたいという願いがあります。挑戦を恐れず、全員で協力して松柏祭を思い出に残るものにしたいという思いが込められています。
+          </p>
+        </div>
       </section>
 
-      <!-- ============ お知らせ ============ -->
-      <section class="section-cta fade-in-section" aria-label="お知らせ">
-        <p class="pill-btn">お知らせ</p>
+      <!-- ============ NEWS ============ -->
+      <section class="news fade-in-section" aria-label="お知らせ一覧">
+        <p class="pill-btn">NEWS</p>
+        <div class="news__grid">
+          <a class="news__item" href="pages/news.html">
+            <span class="news__placeholder"></span>
+          </a>
+          <a class="news__item" href="pages/news.html">
+            <span class="news__placeholder"></span>
+          </a>
+          <a class="news__item" href="pages/news.html">
+            <span class="news__placeholder"></span>
+          </a>
+        </div>
+        <a class="news__viewall" href="pages/news.html">すべて表示</a>
+      </section>
+
+      <!-- ============ SNS・他 ============ -->
+      <section class="sns fade-in-section" aria-label="SNS・その他リンク">
+        <p class="pill-btn">SNS・他</p>
+        <div class="sns__grid">
+          <a class="sns__item" href="#" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--school"><i class="fa-brands fa-instagram"></i></span>
+            <span class="sns__label">岡山操山高等学校<br>HP</span>
+          </a>
+          <a class="sns__item" href="#" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--school"><i class="fa-brands fa-instagram"></i></span>
+            <span class="sns__label">岡山操山中学校<br>HP</span>
+          </a>
+          <a class="sns__item" href="#" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--school"><i class="fa-brands fa-instagram"></i></span>
+            <span class="sns__label">岡山操山高等学校<br>Instagram</span>
+          </a>
+          <a class="sns__item" href="#" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--school"><i class="fa-brands fa-facebook-f"></i></span>
+            <span class="sns__label">岡山操山高等学校<br>Facebook</span>
+          </a>
+          <a class="sns__item" href="#" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--junior"><i class="fa-brands fa-instagram"></i></span>
+            <span class="sns__label">岡山操山中学校<br>Instagram</span>
+          </a>
+          <a class="sns__item" href="#" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--junior"><i class="fa-brands fa-facebook-f"></i></span>
+            <span class="sns__label">岡山操山中学校<br>Facebook</span>
+          </a>
+          <a class="sns__item" href="#" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--capioneer"><i class="fa-brands fa-instagram"></i></span>
+            <span class="sns__label">岡山操山高校生徒会<br>Instagram</span>
+          </a>
+        </div>
       </section>
     </main>
   </div>
 
-  <!-- ============ フッター ============ -->
+  <!-- ============ フッター(ターコイズを画面最下部まで伸ばす) ============ -->
   <footer class="site-footer fade-in-section">
     <p class="footer-title">第78回 松柏祭</p>
     <ul class="footer-links">
-      <li>XXX</li>
-      <li>XXX</li>
-      <li>XXX</li>
+      <li>開催概要</li>
+      <li>アクセス</li>
+      <li>お問い合わせ</li>
     </ul>
-    <p class="footer-copy">&copy; 2026 岡山操山高等学校・中学校　松柏祭技術部</p>
+    <p class="footer-copy">&copy; 2026 岡山操山高等学校・中学校 松柏祭技術部</p>
   </footer>
 
   <!-- ============ 下部タブバー(画面最下部に固定) ============ -->
