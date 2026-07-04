@@ -272,7 +272,7 @@ body.is-splash-active {
 
 .countdown__number {
   font-size: clamp(7.5rem, 32vw, 13rem);
-  font-weight: 800;
+  font-weight: 1200;
   color: var(--color-text);
   line-height: 1;
 }
