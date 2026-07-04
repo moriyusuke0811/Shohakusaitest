@@ -4,9 +4,9 @@
      1. カウントダウン処理
      2. スクロール時フェードイン処理
      3. 下部タブバーの選択状態制御
-     4. 固定ヘッダーのスクロール制御(Heroを抜けたら表示)
+     4. Hero下部バーの固定化(位置・デザインそのまま画面上部へ固定)
      5. 初期化処理(DOMContentLoaded)
-   =========================================================== */
+   ============================================================ */
 
 /* ---------- 1. カウントダウン処理 ---------- */
 
@@ -89,35 +89,49 @@ function initTabBar() {
   });
 }
 
-/* ---------- 4. 固定ヘッダーのスクロール制御 ---------- */
+/* ---------- 4. Hero下部バーの固定化 ---------- */
 
 /**
- * Hero セクションを抜けたタイミングで、
- * 画面上部に「第78回 松柏祭」の固定ヘッダーをスライドインさせる関数
- * ・Hero の下端が画面上端(0)より上に来たら表示
- * ・Hero 内にいる間、またはページ最上部に戻ったら非表示
+ * Hero内の「第78回 松柏祭」帯(#hero-footer-bar)を、
+ * 元の位置・デザインのまま画面上部に固定するための関数。
+ * フェードインやスライドといった演出は行わず、
+ * 帯の本来の位置が画面上端(0)を通過した瞬間に瞬時に固定へ切り替える。
  */
-function initStickyHeader() {
-  const header = document.getElementById('site-header');
-  const hero = document.getElementById('hero');
-  if (!header || !hero) return;
+function initHeroBarPin() {
+  const bar = document.getElementById('hero-footer-bar');
+  if (!bar) return;
 
-  const toggleHeader = () => {
-    const heroBottom = hero.getBoundingClientRect().bottom;
+  // 帯が固定されていない(通常配置の)状態でのドキュメント上のY座標
+  let originalTop = 0;
 
-    if (heroBottom <= 0) {
-      header.classList.add('is-visible');
-      header.setAttribute('aria-hidden', 'false');
+  // is-pinned を外した状態で座標を測り直す(固定中に測ると常に0になってしまうため)
+  const measureOriginalTop = () => {
+    const wasPinned = bar.classList.contains('is-pinned');
+    if (wasPinned) bar.classList.remove('is-pinned');
+
+    originalTop = bar.getBoundingClientRect().top + window.scrollY;
+
+    if (wasPinned) bar.classList.add('is-pinned');
+  };
+
+  // 現在のスクロール位置に応じて固定状態を切り替える
+  const togglePin = () => {
+    if (window.scrollY >= originalTop) {
+      bar.classList.add('is-pinned');
     } else {
-      header.classList.remove('is-visible');
-      header.setAttribute('aria-hidden', 'true');
+      bar.classList.remove('is-pinned');
     }
   };
 
-  // scroll イベントは高頻度で発火するため passive: true で負荷を軽減
-  window.addEventListener('scroll', toggleHeader, { passive: true });
-  // 初期表示時(リロード時にスクロール位置が残っている場合など)にも一度判定しておく
-  toggleHeader();
+  measureOriginalTop();
+  togglePin();
+
+  window.addEventListener('scroll', togglePin, { passive: true });
+  // 画面回転やウィンドウ幅変更でHeroの高さが変わる場合に備えて再計測する
+  window.addEventListener('resize', () => {
+    measureOriginalTop();
+    togglePin();
+  });
 }
 
 /* ---------- 5. 初期化処理 ---------- */
@@ -126,5 +140,5 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
   initScrollFadeIn();
   initTabBar();
-  initStickyHeader();
+  initHeroBarPin();
 });

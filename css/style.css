@@ -124,43 +124,6 @@ ul {
 .bg-decoration .c7 { width: 170px; height: 170px; top: 82%; right: -60px; background: var(--pastel-green-t); }
 .bg-decoration .c8 { width: 140px; height: 140px; top: 78%; left: 8%;   background: var(--pastel-yellow-t); }
 
-/* ---------- 3.5 固定ヘッダー(Heroを抜けたら表示) ---------- */
-/* 最初は画面上に隠れており、Hero を通過したらスライドインする */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 150;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-s);
-  background: var(--color-accent);
-  color: #ffffff;
-  padding: 14px var(--space-m);
-  font-weight: 700;
-  box-shadow: var(--shadow-soft);
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
-}
-
-.site-header.is-visible {
-  transform: translateY(0);
-}
-
-.site-header__badge {
-  font-size: 0.75rem;
-  background: rgba(255, 255, 255, 0.25);
-  padding: 3px 10px;
-  border-radius: 999px;
-}
-
-.site-header__title {
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
-}
-
 /* ---------- 4. Hero セクション ---------- */
 .hero {
   position: relative;
@@ -237,6 +200,17 @@ ul {
 .hero__footer-bar .title {
   font-size: 1.3rem;
   letter-spacing: 0.05em;
+}
+
+/* Heroを抜けると、この帯は位置・デザインをそのままに画面上部へ固定される。
+   フェードインやスライドといった演出は行わず、クラス付与と同時に瞬時に切り替わる。 */
+.hero__footer-bar.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 150;
+  background: var(--color-accent);
 }
 
 /* ---------- 5. カウントダウン ---------- */
