@@ -31,6 +31,13 @@
     <span class="circle c8"></span>
   </div>
 
+  <!-- ============ 固定ヘッダー(Heroを抜けたら表示される「第78回 松柏祭」) ============ -->
+  <!-- 初期状態は非表示(is-visible が付与されるとスライドイン) -->
+  <header class="site-header" id="site-header" aria-hidden="true">
+    <span class="site-header__badge">第78回</span>
+    <span class="site-header__title">松柏祭</span>
+  </header>
+
   <!-- ============ Hero セクション ============ -->
   <header class="hero" id="hero">
     <img class="hero__logo" src="images/logo-shohakusai.svg" alt="第78回 岡山操山 松柏祭 ロゴ">
@@ -48,43 +55,51 @@
     </div>
   </header>
 
-  <main>
-    <!-- ============ カウントダウン ============ -->
-    <section class="countdown fade-in-section" aria-label="開会式カウントダウン">
-      <p class="countdown__label">開会式まであと</p>
-      <p class="countdown__number">
-        <span id="countdown-days">--</span><span>日</span>
-      </p>
-    </section>
+  <!-- ============ メインコンテンツ(PCでは中央寄せ幅を持たせる) ============ -->
+  <div class="page-content">
+    <main>
+      <!-- ============ カウントダウン ============ -->
+      <section class="countdown fade-in-section" aria-label="開会式カウントダウン">
+        <p class="countdown__label">開会式まであと</p>
+        <p class="countdown__number">
+          <span id="countdown-days">--</span><span>日</span>
+        </p>
+      </section>
 
-    <!-- ============ メニュー(タイムテーブル/マップ/展示) ============ -->
-    <nav class="menu-buttons fade-in-section" aria-label="主要メニュー">
-      <a href="pages/timetable.html" class="menu-btn">
-        <i class="fa-regular fa-clock"></i>
-        <span>日程</span>
-      </a>
-      <a href="pages/map.html" class="menu-btn">
-        <i class="fa-solid fa-map"></i>
-        <span>マップアプリ</span>
-      </a>
-      <a href="pages/exhibits.html" class="menu-btn">
-        <i class="fa-solid fa-list-ul"></i>
-        <span>展示索引</span>
-      </a>
-    </nav>
+      <!-- ============ メニュー(タイムテーブル/マップ/展示) ============ -->
+      <nav class="menu-buttons fade-in-section" aria-label="主要メニュー">
+        <a href="pages/timetable.html" class="menu-btn">
+          <i class="fa-regular fa-clock"></i>
+          <span>日程</span>
+        </a>
+        <a href="pages/map.html" class="menu-btn">
+          <i class="fa-solid fa-map"></i>
+          <span>マップアプリ</span>
+        </a>
+        <a href="pages/exhibits.html" class="menu-btn">
+          <i class="fa-solid fa-list-ul"></i>
+          <span>展示索引</span>
+        </a>
+      </nav>
 
-    <!-- ============ 全体テーマ ============ -->
-    <section class="section-cta fade-in-section" aria-label="全体テーマ">
-      <button class="pill-btn" id="theme-open-btn" type="button">全体テーマ</button>
-    </section>
+      <!-- ============ 全体テーマ(常時表示・モーダルは廃止) ============ -->
+      <section class="theme-section fade-in-section" aria-label="全体テーマ">
+        <p class="theme-section__eyebrow">全体テーマ</p>
+        <img class="theme-section__logo" src="images/logo-capioneer.svg" alt="全体テーマ Capioneer ロゴ">
+        <p class="theme-section__desc">
+          CaPioneerはCapacityとPioneerという2つの単語が組み合わさっています。Capacityには
+          一人ひとりが持てる力を最大限に発揮し、輝くという願いがあり、みなさんの溢れ出す個性をいろんな方面で活かし、全員が主役になるような松柏祭にしたいという思いが込められています。もう一つのPioneerには前例のない荒野に一歩を踏み出し、自ら道を切り拓くことで、後に続く人々を導く存在でありたいという願いがあります。挑戦を恐れず、全員で協力して松柏祭を思い出に残るものにしたいという思いが込められています。
+        </p>
+      </section>
 
-    <!-- ============ お知らせ ============ -->
-    <section class="section-cta fade-in-section" aria-label="お知らせ">
-      <a href="pages/news.html" class="pill-btn">お知らせ</a>
-    </section>
-  </main>
+      <!-- ============ お知らせ ============ -->
+      <section class="section-cta fade-in-section" aria-label="お知らせ">
+        <a href="pages/news.html" class="pill-btn">お知らせ</a>
+      </section>
+    </main>
+  </div>
 
-  <!-- ============ フッター ============ -->
+  <!-- ============ フッター(ターコイズを画面最下部まで伸ばす) ============ -->
   <footer class="site-footer fade-in-section">
     <p class="footer-title">第78回 松柏祭</p>
     <ul class="footer-links">
@@ -94,19 +109,6 @@
     </ul>
     <p class="footer-copy">&copy; 2026 岡山操山高等学校 松柏祭実行委員会</p>
   </footer>
-
-  <!-- ============ 全体テーマ モーダル ============ -->
-  <div class="modal-overlay" id="theme-modal" aria-hidden="true">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="theme-modal-title">
-      <button class="modal-close" id="theme-close-btn" type="button" aria-label="閉じる">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <img src="images/logo-capioneer.svg" alt="全体テーマ Capioneer ロゴ">
-      <h2 id="theme-modal-title">Capioneer</h2>
-      <p>
-        CaPioneerはCapacityとPioneerという2つの単語が組み合わさっています。Capacityには 一人ひとりが持てる力を最大限に発揮し、輝くという願いがあり、みなさんの溢れ出す個性をいろんな方面で活かし、全員が主役になるような松柏祭にしたいという思いが込められています。もう一つのPioneerには前例のない荒野に一歩を踏み出し、自ら道を切り拓くことで、後に続く人々を導く存在でありたいという願いがあります。挑戦を恐れず、全員で協力して松柏祭を思い出に残るものにしたいという思いが込められています。
-    </div>
-  </div>
 
   <!-- ============ 下部タブバー(画面最下部に固定) ============ -->
   <nav class="tab-bar" aria-label="下部ナビゲーション">

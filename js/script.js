@@ -4,7 +4,7 @@
      1. カウントダウン処理
      2. スクロール時フェードイン処理
      3. 下部タブバーの選択状態制御
-     4. 全体テーマ モーダル制御
+     4. 固定ヘッダーのスクロール制御(Heroを抜けたら表示)
      5. 初期化処理(DOMContentLoaded)
    ============================================================ */
 
@@ -89,45 +89,35 @@ function initTabBar() {
   });
 }
 
-/* ---------- 4. 全体テーマ モーダル制御 ---------- */
+/* ---------- 4. 固定ヘッダーのスクロール制御 ---------- */
 
 /**
- * 「全体テーマ」ボタン押下でモーダルを開き、
- * 閉じるボタン・オーバーレイクリックで閉じる関数
+ * Hero セクションを抜けたタイミングで、
+ * 画面上部に「第78回 松柏祭」の固定ヘッダーをスライドインさせる関数
+ * ・Hero の下端が画面上端(0)より上に来たら表示
+ * ・Hero 内にいる間、またはページ最上部に戻ったら非表示
  */
-function initThemeModal() {
-  const openBtn = document.getElementById('theme-open-btn');
-  const closeBtn = document.getElementById('theme-close-btn');
-  const modal = document.getElementById('theme-modal');
+function initStickyHeader() {
+  const header = document.getElementById('site-header');
+  const hero = document.getElementById('hero');
+  if (!header || !hero) return;
 
-  if (!openBtn || !modal) return;
+  const toggleHeader = () => {
+    const heroBottom = hero.getBoundingClientRect().bottom;
 
-  const openModal = () => {
-    modal.classList.add('is-visible');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden'; // 背景スクロールを止める
-  };
-
-  const closeModal = () => {
-    modal.classList.remove('is-visible');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
-
-  openBtn.addEventListener('click', openModal);
-  closeBtn.addEventListener('click', closeModal);
-
-  // オーバーレイ(背景)クリックでも閉じる
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  // ESCキーでも閉じられるようにする
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('is-visible')) {
-      closeModal();
+    if (heroBottom <= 0) {
+      header.classList.add('is-visible');
+      header.setAttribute('aria-hidden', 'false');
+    } else {
+      header.classList.remove('is-visible');
+      header.setAttribute('aria-hidden', 'true');
     }
-  });
+  };
+
+  // scroll イベントは高頻度で発火するため passive: true で負荷を軽減
+  window.addEventListener('scroll', toggleHeader, { passive: true });
+  // 初期表示時(リロード時にスクロール位置が残っている場合など)にも一度判定しておく
+  toggleHeader();
 }
 
 /* ---------- 5. 初期化処理 ---------- */
@@ -136,5 +126,5 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
   initScrollFadeIn();
   initTabBar();
-  initThemeModal();
+  initStickyHeader();
 });
