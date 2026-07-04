@@ -282,7 +282,7 @@ body.is-splash-active {
   margin-left: 4px;
 }
 
-/* ---------- 7. メニューボタン(タイムテーブル/マップ/展示) ---------- */
+/* --------- 7. メニューボタン(タイムテーブル/マップ/展示) ---------- */
 .menu-buttons {
   display: flex;
   justify-content: center;
