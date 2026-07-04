@@ -349,7 +349,7 @@ body.is-splash-active {
 }
  
 
-/* ---------- 7.5 主な日程 ---------- */
+/* ---------- 7.5 主な日程 ----------- */
 .schedule {
   padding: var(--space-l) var(--space-m) var(--space-m);
   text-align: center;
