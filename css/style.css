@@ -156,7 +156,7 @@ ul {
 }
 
 .hero__logo {
-  width: min(46vw, 220px);
+  width: min(50vw, 520px);
   margin-top: var(--space-l);
   animation: fadeInDown 1s ease both;
 }
@@ -192,7 +192,6 @@ ul {
 
 .hero__footer-bar .badge {
   font-size: 0.8rem;
-  background: rgba(255, 255, 255, 0.25);
   padding: 4px 10px;
   border-radius: 999px;
 }
@@ -226,12 +225,11 @@ ul {
 }
 
 .countdown__number {
-  font-size: clamp(3.5rem, 16vw, 5.5rem);
+  font-size: clamp(6rem, 25vw, 10rem);
   font-weight: 800;
   color: var(--color-text);
   line-height: 1;
 }
-
 .countdown__number span {
   font-size: 1.2rem;
   font-weight: 700;
