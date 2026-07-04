@@ -25,8 +25,8 @@
 
   /* Hero背景ストライプ専用カラー(指定画像から抽出した10色を左から順に) */
   --stripe-1: #f9f1d3;
-  --stripe-2: #f9d3f1;
-  --stripe-3: #d4d3f9;
+  --stripe-2: #d4d3f9;
+  --stripe-3: #f9d3f1;
   --stripe-4: #f9edd3;
   --stripe-5: #f8f9d3;
   --stripe-6: #d3f9d5;
