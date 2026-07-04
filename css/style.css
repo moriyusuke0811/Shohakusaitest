@@ -265,21 +265,52 @@ body.is-splash-active {
 }
 
 .countdown__label {
+  display: inline-block;
   font-size: 1rem;
-  color: var(--color-text-sub);
-  margin-bottom: 6px;
+  font-weight: 700;
+  color: var(--color-accent-dark);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-m);
+}
+
+/* 数字を引き立てるカード。パステルなグラデーションと太めのアクセント枠、
+   ふわっとした影でおしゃれさと視認性を両立させる */
+.countdown__card {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: var(--space-m) var(--space-l);
+  background: linear-gradient(160deg, #ffffff 0%, var(--pastel-blue-t) 100%);
+  border: 3px solid var(--color-accent);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-strong);
+  /* ほんのり呼吸するように影が揺れることで、カード全体に生き生きとした印象を持たせる */
+  animation: countdownGlow 3.2s ease-in-out infinite;
 }
 
 .countdown__number {
-  font-size: clamp(7.5rem, 32vw, 13rem);
-  font-weight: 1200;
-  color: var(--color-text);
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  /* 数字を画面の主役として大きく・太く表示する(以前は無効な font-weight で細く表示されていたのを修正) */
+  font-size: clamp(9rem, 34vw, 15rem);
+  font-weight: 900;
+  color: var(--color-accent-dark);
   line-height: 1;
+  letter-spacing: -0.02em;
+  /* 少し立体感を出すためのソフトなテキストシャドウ */
+  text-shadow: 0 6px 0 rgba(31, 154, 144, 0.15);
 }
-.countdown__number span {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-left: 4px;
+
+.countdown__unit {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-text);
+  align-self: flex-end;
+  margin-bottom: 0.5rem;
 }
 
 /* ---------- 7. メニューボタン(タイムテーブル/マップ/展示) ---------- */
@@ -683,6 +714,16 @@ body.is-splash-active {
   100% { transform: scale(1); }
 }
 
+/* カウントダウンカードが静かに呼吸するように影が変化する演出 */
+@keyframes countdownGlow {
+  0%, 100% {
+    box-shadow: var(--shadow-strong);
+  }
+  50% {
+    box-shadow: 0 14px 36px rgba(47, 191, 178, 0.28);
+  }
+}
+
 /* スクロール時フェードイン用(JSでクラス付与) */
 .fade-in-section {
   opacity: 0;
@@ -700,7 +741,11 @@ body.is-splash-active {
 /* タブレット(iPad想定) */
 @media (min-width: 768px) {
   .countdown__number {
-    font-size: 8rem;
+    font-size: 11rem;
+  }
+
+  .countdown__card {
+    padding: var(--space-l) 64px;
   }
 
   .menu-btn {
