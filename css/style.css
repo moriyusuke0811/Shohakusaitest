@@ -301,7 +301,6 @@ body.is-splash-active {
   background: #ffffff;
   border: 2px solid var(--color-accent);
   border-radius: var(--radius-m);
-  box-shadow: var(--shadow-soft);
   color: var(--color-accent-dark);
   font-size: 0.78rem;
   font-weight: 700;
@@ -313,13 +312,8 @@ body.is-splash-active {
 }
 
 .menu-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-strong);
-  background: var(--pastel-blue-t);
-}
-
-.menu-btn:active {
-  transform: scale(0.94);
+  color: #ffffff;
+  background: var( --color-accent);
 }
 
 /* ---------- 8. 全体テーマ / お知らせ タイトルラベル(共通・アニメーションなし) ---------- */
