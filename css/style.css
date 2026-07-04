@@ -98,7 +98,43 @@ ul {
   list-style: none;
 }
 
-/* ---------- 3. 背景の半透明の丸(装飾) ---------- */
+/* ---------- 3. 起動時スプラッシュ ---------- */
+/* 白背景の上に Hero ロゴ(.hero__logo と同じ配置・同じサイズ)だけを表示し、
+   一定時間後に背景を透明へフェードさせることで「白背景 → ページ」への
+   ゆっくりとした切り替わりを演出する。ロゴ自体の位置・大きさは
+   Hero本体のロゴと完全に同一なので、切り替わってもロゴは動かない。 */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  background: var(--color-bg);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.4s ease, visibility 1.4s ease;
+}
+
+.splash__logo {
+  /* .hero__logo の margin-top / width をそのまま継承して位置を一致させる */
+  animation: none; /* Hero側のfadeInDownと二重に動かないようにsplash内では無効化 */
+}
+
+.splash.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* スプラッシュ表示中はページのスクロールを止める */
+body.is-splash-active {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* ---------- 4. 背景の半透明の丸(装飾) ---------- */
 /* 全体を覆う固定の装飾レイヤー。クリックを邪魔しないよう pointer-events: none */
 .bg-decoration {
   position: fixed;
@@ -124,7 +160,7 @@ ul {
 .bg-decoration .c7 { width: 170px; height: 170px; top: 82%; right: -60px; background: var(--pastel-green-t); }
 .bg-decoration .c8 { width: 140px; height: 140px; top: 78%; left: 8%;   background: var(--pastel-yellow-t); }
 
-/* ---------- 4. Hero セクション ---------- */
+/* ---------- 5. Hero セクション ---------- */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -156,7 +192,7 @@ ul {
 }
 
 .hero__logo {
-  width: min(50vw, 520px);
+  width: min(78vw, 680px);
   margin-top: var(--space-l);
   animation: fadeInDown 1s ease both;
 }
@@ -212,7 +248,7 @@ ul {
   background: var(--color-accent);
 }
 
-/* ---------- 5. カウントダウン ---------- */
+/* ---------- 6. カウントダウン ---------- */
 .countdown {
   text-align: center;
   padding: var(--space-l) var(--space-m) var(--space-m);
@@ -236,7 +272,7 @@ ul {
   margin-left: 4px;
 }
 
-/* ---------- 6. メニューボタン(タイムテーブル/マップ/展示) ---------- */
+/* ---------- 7. メニューボタン(タイムテーブル/マップ/展示) ---------- */
 .menu-buttons {
   display: flex;
   justify-content: center;
@@ -276,35 +312,26 @@ ul {
   transform: scale(0.94);
 }
 
-/* ---------- 7. 全体テーマ / お知らせ ボタン(共通丸ボタン) ---------- */
+/* ---------- 8. 全体テーマ / お知らせ タイトルラベル(共通・アニメーションなし) ---------- */
 .section-cta {
   display: flex;
   justify-content: center;
   padding: var(--space-m);
 }
 
+/* Hero下部の帯(.hero__footer-bar)と統一感を持たせた、常に静止したタイトルラベル。
+   カーソルによるホバー/クリック時の演出(拡大・浮き上がり・色変化)は一切行わない。 */
 .pill-btn {
-  padding: 14px 40px;
+  padding: 10px 32px;
   background: var(--color-accent);
   color: #ffffff;
   font-weight: 700;
   font-size: 1rem;
-  border-radius: 999px;
+  border-radius: var(--radius-s);
   box-shadow: var(--shadow-soft);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.pill-btn:hover {
-  background: var(--color-accent-dark);
-  box-shadow: var(--shadow-strong);
-  transform: translateY(-3px);
-}
-
-.pill-btn:active {
-  transform: scale(0.95);
-}
-
-/* ---------- 7.5 全体テーマ セクション(常時表示・モーダル廃止) ---------- */
+/* ---------- 8.5 全体テーマ セクション(常時表示・モーダル廃止) ---------- */
 .theme-section {
   text-align: center;
   padding: var(--space-l) var(--space-m);
@@ -322,7 +349,7 @@ ul {
 }
 
 .theme-section__logo {
-  width: min(60vw, 260px);
+  width: min(30vw, 130px);
   margin: 0 auto var(--space-m);
 }
 
@@ -334,7 +361,7 @@ ul {
   color: var(--color-text-sub);
 }
 
-/* ---------- 8. フッター ---------- */
+/* ---------- 9. フッター ---------- */
 /* ターコイズの背景を画面の一番下までしっかり伸ばす。
    タブバー分の余白は body ではなくフッター自身が padding-bottom として持つことで、
    フッターの色が途切れずタブバーの裏まで続くようにしている。 */
@@ -368,7 +395,7 @@ ul {
   opacity: 0.75;
 }
 
-/* ---------- 9. 下部タブバー ---------- */
+/* ---------- 10. 下部タブバー ---------- */
 .tab-bar {
   position: fixed;
   bottom: 0;
@@ -449,9 +476,9 @@ ul {
   transform: scale(0.9);
 }
 
-/* ---------- 10. (廃止) 全体テーマは常時表示セクションに変更したため、モーダル用CSSは削除しました ---------- */
+/* ---------- 11. (廃止) 全体テーマは常時表示セクションに変更したため、モーダル用CSSは削除しました ---------- */
 
-/* ---------- 11. 汎用アニメーション ---------- */
+/* ---------- 12. 汎用アニメーション ---------- */
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -480,7 +507,7 @@ ul {
   transform: translateY(0);
 }
 
-/* ---------- 12. レスポンシブ対応(モバイルファースト → タブレット/PC拡張) ---------- */
+/* ---------- 13. レスポンシブ対応(モバイルファースト → タブレット/PC拡張) ---------- */
 
 /* タブレット(iPad想定) */
 @media (min-width: 768px) {
@@ -518,7 +545,7 @@ ul {
   }
 
   .hero__logo {
-    width: 220px;
+    width: 360px;
   }
 
   .menu-buttons {

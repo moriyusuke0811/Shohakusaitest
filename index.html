@@ -18,6 +18,13 @@
 </head>
 <body>
 
+  <!-- ============ 起動時スプラッシュ(白背景→ページへゆっくり切り替え) ============ -->
+  <!-- ロゴは .hero__logo と全く同じ配置ルールを使うことで、
+       スプラッシュ表示時とHero本体表示時でロゴの位置・大きさが完全に一致するようにしている -->
+  <div class="splash" id="splash" aria-hidden="true">
+    <img class="hero__logo splash__logo" src="images/logo-shohakusai.svg" alt="">
+  </div>
+
   <!-- ============ 背景装飾(半透明の丸) ============ -->
   <!-- aria-hidden: 装飾要素のためスクリーンリーダーからは非表示 -->
   <div class="bg-decoration" aria-hidden="true">

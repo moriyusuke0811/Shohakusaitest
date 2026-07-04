@@ -5,7 +5,8 @@
      2. スクロール時フェードイン処理
      3. 下部タブバーの選択状態制御
      4. Hero下部バーの固定化(位置・デザインそのまま画面上部へ固定)
-     5. 初期化処理(DOMContentLoaded)
+     5. 起動時スプラッシュ(白背景 → ページへゆっくり切り替え)
+     6. 初期化処理(DOMContentLoaded)
    ============================================================ */
 
 /* ---------- 1. カウントダウン処理 ---------- */
@@ -134,11 +135,46 @@ function initHeroBarPin() {
   });
 }
 
-/* ---------- 5. 初期化処理 ---------- */
+/* ---------- 5. 起動時スプラッシュ(白背景 → ページへゆっくり切り替え) ---------- */
+
+/**
+ * ページを開いた瞬間は白背景の上に Hero ロゴだけが表示された状態にしておき、
+ * 少し間を置いてから白背景をゆっくりフェードアウトさせることで
+ * ページ全体(ストライプ・グラデーション等)へなめらかに切り替わる演出。
+ *
+ * スプラッシュ内のロゴは Hero 本体のロゴと同じ .hero__logo クラスを使っており、
+ * 配置ルール(margin-top・width)が完全に共通のため、
+ * 切り替わり前後でロゴの位置・大きさは一切変化しない。
+ */
+function initSplashIntro() {
+  const splash = document.getElementById('splash');
+  if (!splash) return;
+
+  // スプラッシュ表示中はスクロールを止めておく
+  document.body.classList.add('is-splash-active');
+
+  const hideSplash = () => {
+    splash.classList.add('is-hidden');
+    document.body.classList.remove('is-splash-active');
+
+    // トランジション終了後にDOMから取り除いて後片付け
+    window.setTimeout(() => {
+      if (splash.parentNode) {
+        splash.parentNode.removeChild(splash);
+      }
+    }, 1600);
+  };
+
+  // ロゴをひと呼吸見せてから、ゆっくり白背景を透明にしてページへ切り替える
+  window.setTimeout(hideSplash, 900);
+}
+
+/* ---------- 6. 初期化処理 ---------- */
 
 document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
   initScrollFadeIn();
   initTabBar();
   initHeroBarPin();
+  initSplashIntro();
 });
