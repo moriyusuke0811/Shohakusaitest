@@ -133,7 +133,20 @@ const EXHIBITS_DATA = (() => {
      ・旧「ステージ企画」の代わりとなるカテゴリーです。
      ・体育館で行われる個別の企画があればここに記載します。
      ============================================================ */
+  const gymPrograms = [
+  ];
 
+  gymPrograms.forEach((prog, i) => {
+    const id = `gym-${i + 1}`;
+    items.push({
+      id,
+      title: prog.title,
+      category: '体育館',
+      tags: [prog.title, '体育館', 'パフォーマンス'],
+      location: prog.location,
+      description: prog.description,
+    });
+  });
 
 
   /* ============================================================
