@@ -1094,3 +1094,9 @@ body.is-splash-active {
     gap: var(--space-m);
   }
 }
+
+/* 展示索引ページでは最初から表示 */
+.exhibits-page .fade-in-section {
+  opacity: 1;
+  transform: none;
+}
