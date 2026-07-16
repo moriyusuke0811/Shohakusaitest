@@ -67,7 +67,16 @@
   /* ---------- 2. カテゴリーチップ ---------- */
 
   function renderChips() {
-    const categories = ['すべて', ...new Set(DATA.map((item) => item.category))];
+    // カテゴリのリストを取得
+    const categorySet = new Set(DATA.map((item) => item.category));
+    
+    // 体育館や中庭の純粋な「カテゴリ」データが0件でも、タグとして存在すればチップを表示する
+    DATA.forEach(item => {
+      if (item.tags && item.tags.includes('体育館')) categorySet.add('体育館');
+      if (item.tags && item.tags.includes('中庭')) categorySet.add('中庭');
+    });
+
+    const categories = ['すべて', ...categorySet];
 
     chipsEl.innerHTML = '';
     categories.forEach((category) => {
@@ -96,7 +105,12 @@
     const kw = keyword.trim().toLowerCase();
 
     const filtered = DATA.filter((item) => {
-      const matchesCategory = activeCategory === 'すべて' || item.category === activeCategory;
+      // ★変更点: カテゴリが一致する、または tags の中に activeCategory が含まれていれば表示する
+      const matchesCategory = 
+        activeCategory === 'すべて' || 
+        item.category === activeCategory || 
+        (item.tags && item.tags.includes(activeCategory));
+        
       if (!matchesCategory) return false;
       if (!kw) return true;
 
@@ -153,8 +167,6 @@
   });
 
   /* ---------- 5. URLクエリ(?spot=id)からの直接オープン ---------- */
-  /* マップページなど他画面から「この展示の詳細を開いた状態」でリンクできるようにするための入口。
-     例: exhibits.html?spot=class-1-1 */
   function openFromQueryIfNeeded() {
     const params = new URLSearchParams(window.location.search);
     const spot = params.get('spot');
