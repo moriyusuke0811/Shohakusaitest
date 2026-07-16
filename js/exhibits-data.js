@@ -55,7 +55,7 @@ const EXHIBITS_DATA = (() => {
     { name: '棋道', location: '本館3F 3-B教室', extraTags: [], description: '高校棋道部です。囲碁や将棋、チェスなどの対局スペースを用意しています。部員への挑戦状もお待ちしています！' },
     { name: 'ESS', location: '本館2F 2-C教室', extraTags: [], description: '高校ESS（英語部）です。英語を使ったゲームやクイズ、洋画の字幕翻訳体験など、英語に親しめる企画をたくさん用意しています。' },
     { name: 'パソコン', location: '特別教室棟 情報演習室', extraTags: [], description: '高校パソコン部です。部員が自作したオリジナルゲームの体験プレイや、CG作品、プログラミングの研究発表を行っています。' },
-    { name: '音楽', location: '体育館', extraTags: ['体育館'], description: '高校音楽部です。合唱やアコースティックギターの弾き語りなど、音楽を愛する部員たちが心温まるメロディーをお届けします。' },
+    { name: '音楽', location: '体育館', extraTags: ['体育館'], description: '体育館でライブをします！！！' },
     { name: '科学', location: '特別教室棟 理科室1', extraTags: [], description: '高校科学部です。目の前で変化する面白い化学実験のデモンストレーションや、科学の不思議に触れられる体験コーナーがあります。' },
     { name: '生物', location: '特別教室棟 生物室', extraTags: [], description: '高校生物部です。校庭の動植物の観察レポートや、飼育している水生生物・昆虫の展示、骨格標本の公開を行っています。' },
   ];
@@ -133,22 +133,7 @@ const EXHIBITS_DATA = (() => {
      ・旧「ステージ企画」の代わりとなるカテゴリーです。
      ・体育館で行われる個別の企画があればここに記載します。
      ============================================================ */
-  const gymPrograms = [
-    { title: '有志バンドライブ', location: '体育館 メインステージ', description: 'オーディションを勝ち抜いた有志バンドによる熱いライブパフォーマンス！' },
-    { title: 'ダンス部発表', location: '体育館 メインステージ', description: '息の合った迫力満点のダンスショーをお届けします。' },
-  ];
 
-  gymPrograms.forEach((prog, i) => {
-    const id = `gym-${i + 1}`;
-    items.push({
-      id,
-      title: prog.title,
-      category: '体育館',
-      tags: [prog.title, '体育館', 'パフォーマンス'],
-      location: prog.location,
-      description: prog.description,
-    });
-  });
 
 
   /* ============================================================
@@ -157,7 +142,7 @@ const EXHIBITS_DATA = (() => {
      ・中庭で行われる個別の企画があればここに記載します。
      ============================================================ */
   const courtyardPrograms = [
-    { title: 'よさこい演舞', location: '中庭 特設スペース', description: '有志団体による大迫力のよさこい演舞です。中庭を舞台に華やかに舞います！' },
+    { title: '中庭ステージ', location: '中庭 特設スペース', description: '有志による中庭パフォーマンスです。' },
   ];
 
   courtyardPrograms.forEach((prog, i) => {
