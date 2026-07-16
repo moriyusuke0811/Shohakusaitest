@@ -111,10 +111,6 @@ ul {
 }
 
 /* ---------- 3. 起動時スプラッシュ ---------- */
-/* 白背景の上に Hero ロゴ(.hero__logo と同じ配置・同じサイズ)だけを表示し、
-   一定時間後に背景を透明へフェードさせることで「白背景 → ページ」への
-   ゆっくりとした切り替わりを演出する。ロゴ自体の位置・大きさは
-   Hero本体のロゴと完全に同一なので、切り替わってもロゴは動かない。 */
 .splash {
   position: fixed;
   inset: 0;
@@ -130,8 +126,7 @@ ul {
 }
 
 .splash__logo {
-  /* .hero__logo の margin-top / width をそのまま継承して位置を一致させる */
-  animation: none; /* Hero側のfadeInDownと二重に動かないようにsplash内では無効化 */
+  animation: none;
 }
 
 .splash.is-hidden {
@@ -140,14 +135,12 @@ ul {
   pointer-events: none;
 }
 
-/* スプラッシュ表示中はページのスクロールを止める */
 body.is-splash-active {
   overflow: hidden;
   height: 100%;
 }
 
 /* ---------- 4. 背景の半透明の丸(装飾) ---------- */
-/* 全体を覆う固定の装飾レイヤー。クリックを邪魔しないよう pointer-events: none */
 .bg-decoration {
   position: fixed;
   inset: 0;
@@ -162,7 +155,6 @@ body.is-splash-active {
   filter: blur(0.5px);
 }
 
-/* 各丸のサイズ・位置・色をランダム風に配置 */
 .bg-decoration .c1 { width: 180px; height: 180px; top: 8%;  left: -60px; background: var(--pastel-yellow-t); }
 .bg-decoration .c2 { width: 220px; height: 220px; top: 4%;  right: -80px; background: var(--pastel-green-t); }
 .bg-decoration .c3 { width: 160px; height: 160px; top: 30%; left: 4%;   background: var(--pastel-blue-t); }
@@ -183,7 +175,6 @@ body.is-splash-active {
   overflow: hidden;
   padding: var(--space-l) var(--space-m) var(--space-m);
   text-align: center;
-  /* 上:淡いストライプ → 下:ターコイズへのグラデーション */
   background:
     linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 38%, var(--color-accent-light) 62%, var(--color-accent) 100%),
     repeating-linear-gradient(
@@ -207,7 +198,6 @@ body.is-splash-active {
   animation: fadeInDown 1s ease both;
 }
 
-/* スクロールを促す矢印アニメーション */
 .hero__scroll {
   display: flex;
   flex-direction: column;
@@ -225,7 +215,6 @@ body.is-splash-active {
 .hero__scroll i:nth-child(2) { animation-delay: 0.15s; }
 .hero__scroll i:nth-child(3) { animation-delay: 0.3s; }
 
-/* Hero下部の帯(祭名表示) */
 .hero__footer-bar {
   width: 100%;
   display: flex;
@@ -247,8 +236,6 @@ body.is-splash-active {
   letter-spacing: 0.05em;
 }
 
-/* Heroを抜けると、この帯は位置・デザインをそのままに画面上部へ固定される。
-   フェードインやスライドといった演出は行わず、クラス付与と同時に瞬時に切り替わる。 */
 .hero__footer-bar.is-pinned {
   position: fixed;
   top: 0;
@@ -273,8 +260,6 @@ body.is-splash-active {
   margin-bottom: var(--space-m);
 }
 
-/* 数字を引き立てるカード。パステルなグラデーションと太めのアクセント枠、
-   ふわっとした影でおしゃれさと視認性を両立させる */
 .countdown__card {
   position: relative;
   display: inline-flex;
@@ -286,7 +271,6 @@ body.is-splash-active {
   border: 3px solid var(--color-accent);
   border-radius: var(--radius-l);
   box-shadow: var(--shadow-strong);
-  /* ほんのり呼吸するように影が揺れることで、カード全体に生き生きとした印象を持たせる */
   animation: countdownGlow 3.2s ease-in-out infinite;
 }
 
@@ -295,13 +279,11 @@ body.is-splash-active {
   align-items: baseline;
   justify-content: center;
   gap: 6px;
-  /* 数字を画面の主役として大きく・太く表示する(以前は無効な font-weight で細く表示されていたのを修正) */
   font-size: clamp(9rem, 34vw, 15rem);
   font-weight: 900;
   color: var(--color-accent-dark);
   line-height: 1;
   letter-spacing: -0.02em;
-  /* 少し立体感を出すためのソフトなテキストシャドウ */
   text-shadow: 0 6px 0 rgba(31, 154, 144, 0.15);
 }
 
@@ -321,7 +303,7 @@ body.is-splash-active {
   padding: var(--space-m);
   flex-wrap: wrap;
 }
- 
+
 .menu-btn {
   display: flex;
   flex-direction: column;
@@ -338,16 +320,16 @@ body.is-splash-active {
   font-weight: 700;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
- 
+
 .menu-btn i {
   font-size: 1.4rem;
 }
- 
+
 .menu-btn:hover {
   background: var(--color-accent);
   color: #ffffff;
 }
- 
+
 
 /* ---------- 7.5 主な日程 ----------- */
 .schedule {
@@ -402,9 +384,6 @@ body.is-splash-active {
 }
 
 /* ---------- 8. 全体テーマ / NEWS / SNS タイトルラベル(共通・アニメーションなし) ---------- */
-
-/* Hero下部の帯(.hero__footer-bar)と統一感を持たせた、常に静止したタイトルラベル。
-   カーソルによるホバー/クリック時の演出(拡大・浮き上がり・色変化)は一切行わない。 */
 .pill-btn {
   display: inline-block;
   padding: 10px 32px;
@@ -433,7 +412,6 @@ body.is-splash-active {
   margin-bottom: var(--space-m);
 }
 
-/* モバイル:ロゴ→説明文の縦積み・中央寄せ */
 .theme-section__body {
   display: flex;
   flex-direction: column;
@@ -454,7 +432,6 @@ body.is-splash-active {
   color: var(--color-text-sub);
 }
 
-/* タブレット以上:ロゴを左、説明文を右に並べる横並びレイアウト */
 @media (min-width: 768px) {
   .theme-section__body {
     flex-direction: row;
@@ -581,11 +558,8 @@ body.is-splash-active {
 }
 
 /* ---------- 9. フッター ---------- */
-/* ターコイズの背景を画面の一番下までしっかり伸ばす。
-   タブバー分の余白は body ではなくフッター自身が padding-bottom として持つことで、
-   フッターの色が途切れずタブバーの裏まで続くようにしている。 */
 .site-footer {
-  flex-shrink: 0; /* sticky footer レイアウトで潰れないように */
+  flex-shrink: 0;
   margin: var(--space-l) var(--space-s) 0;
   background: var(--color-accent);
   color: #ffffff;
@@ -656,7 +630,6 @@ body.is-splash-active {
   font-weight: 600;
 }
 
-/* 中央タブ(マップ)は大きい丸+アクセントカラー */
 .tab-item--center {
   width: 68px;
   height: 68px;
@@ -675,7 +648,6 @@ body.is-splash-active {
   color: #ffffff;
 }
 
-/* 選択中タブの強調(中央以外) */
 .tab-item.is-active:not(.tab-item--center) {
   background: var(--pastel-blue-t);
   color: var(--color-accent-dark);
@@ -686,7 +658,6 @@ body.is-splash-active {
   color: var(--color-accent-dark);
 }
 
-/* 中央タブが選択中の場合は少し拡大 */
 .tab-item--center.is-active {
   animation: tabPop 0.35s ease;
 }
@@ -694,8 +665,6 @@ body.is-splash-active {
 .tab-item:active {
   transform: scale(0.9);
 }
-
-/* ---------- 11. (廃止) 全体テーマは常時表示セクションに変更したため、モーダル用CSSは削除しました ---------- */
 
 /* ---------- 12. 汎用アニメーション ---------- */
 @keyframes fadeInDown {
@@ -714,7 +683,6 @@ body.is-splash-active {
   100% { transform: scale(1); }
 }
 
-/* カウントダウンカードが静かに呼吸するように影が変化する演出 */
 @keyframes countdownGlow {
   0%, 100% {
     box-shadow: var(--shadow-strong);
@@ -724,7 +692,6 @@ body.is-splash-active {
   }
 }
 
-/* スクロール時フェードイン用(JSでクラス付与) */
 .fade-in-section {
   opacity: 0;
   transform: translateY(24px);
@@ -738,7 +705,6 @@ body.is-splash-active {
 
 /* ---------- 13. レスポンシブ対応(モバイルファースト → タブレット/PC拡張) ---------- */
 
-/* タブレット(iPad想定) */
 @media (min-width: 768px) {
   .countdown__number {
     font-size: 11rem;
@@ -767,10 +733,6 @@ body.is-splash-active {
   }
 }
 
-/* PC想定:
-   Hero / 固定ヘッダー / フッター / タブバーは画面幅いっぱいに広げたまま、
-   カウントダウンや全体テーマなど「読みもの」部分だけを中央寄せしてカード感を出す。
-   これにより 1920×1080 のような大画面でも Hero が左右に余白を作らず画面いっぱいに表示される。 */
 @media (min-width: 1024px) {
   .page-content {
     max-width: 900px;
@@ -786,9 +748,349 @@ body.is-splash-active {
   }
 }
 
-/* フルHD以上の大画面:Hero の余白の付き方を微調整し、縦方向も画面いっぱいに保つ */
 @media (min-width: 1440px) {
   .hero {
     min-height: 100vh;
+  }
+}
+
+/* ============================================================
+   展示索引ページ(pages/exhibits.html)専用スタイル
+   構成:
+     14. ページ共通ヘッダー(サブページ用・戻る導線)
+     15. 検索・カテゴリー絞り込み
+     16. タイルグリッド(60件・写真+タイトル)
+     17. 詳細モーダル
+   ============================================================ */
+
+/* ---------- 14. ページ共通ヘッダー ---------- */
+/* Heroを持たないサブページ用の固定ヘッダー。
+   Hero下部の帯(.hero__footer-bar.is-pinned)とデザインを揃え、
+   サイト全体で「上部に固定されるターコイズの帯」という一貫性を持たせている。 */
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  background: var(--color-accent);
+  color: #ffffff;
+  padding: var(--space-s) var(--space-m);
+}
+
+.page-header__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.page-header__back:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.page-header__title {
+  flex: 1;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+
+.page-header__spacer {
+  width: 36px;
+  flex-shrink: 0;
+}
+
+/* 固定ヘッダー分、本文が隠れないようにする */
+.exhibits-page {
+  padding-top: calc(var(--space-l) + 36px + var(--space-m));
+  padding-bottom: calc(var(--tabbar-height) + var(--space-l));
+}
+
+/* ---------- 15. 検索・カテゴリー絞り込み ---------- */
+.exhibits-search {
+  padding: var(--space-m);
+  text-align: center;
+}
+
+.exhibits-search__box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 12px 18px;
+  background: #ffffff;
+  border: 2px solid var(--color-accent);
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  color: var(--color-accent-dark);
+}
+
+.exhibits-search__box i {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.exhibits-search__box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--color-text);
+}
+
+.exhibits-search__box input::placeholder {
+  color: #9aa0a0;
+}
+
+.exhibits-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 640px;
+  margin: var(--space-m) auto 0;
+}
+
+.exhibits-filter__chip {
+  padding: 6px 18px;
+  border: 1.5px solid var(--color-accent);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--color-accent-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.exhibits-filter__chip.is-active {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.exhibits-search__count {
+  margin-top: var(--space-s);
+  font-size: 0.78rem;
+  color: var(--color-text-sub);
+}
+
+/* ---------- 16. タイルグリッド ---------- */
+.exhibits-grid-section {
+  padding: 0 var(--space-m) var(--space-m);
+}
+
+.exhibits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-s);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.exhibit-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: #ffffff;
+  border: none;
+  border-radius: var(--radius-s);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exhibit-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-strong);
+}
+
+.exhibit-tile:active {
+  transform: scale(0.97);
+}
+
+/* 写真プレースホルダー(実際の写真が用意でき次第、背景画像に差し替え) */
+.exhibit-tile__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(160deg, #eef7f6, #dcefed);
+  color: var(--color-accent);
+  font-size: 1.6rem;
+}
+
+.exhibit-tile__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px 14px;
+}
+
+.exhibit-tile__category {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-accent-dark);
+}
+
+.exhibit-tile__title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.exhibits-empty {
+  text-align: center;
+  color: var(--color-text-sub);
+  font-size: 0.9rem;
+  padding: var(--space-l) 0;
+}
+
+/* ---------- 17. 詳細モーダル ---------- */
+.exhibit-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-m);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.exhibit-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.exhibit-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 30, 30, 0.55);
+}
+
+.exhibit-modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-strong);
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  transform: translateY(16px);
+  transition: transform 0.25s ease;
+}
+
+.exhibit-modal.is-open .exhibit-modal__panel {
+  transform: translateY(0);
+}
+
+.exhibit-modal__close {
+  position: absolute;
+  top: var(--space-s);
+  right: var(--space-s);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f1f3f3;
+  color: var(--color-text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.exhibit-modal__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 160px;
+  border-radius: var(--radius-m);
+  background: linear-gradient(160deg, #eef7f6, #dcefed);
+  color: var(--color-accent);
+  font-size: 2.2rem;
+  margin-bottom: var(--space-m);
+}
+
+.exhibit-modal__tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--color-accent);
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: var(--space-s);
+}
+
+.exhibit-modal__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.exhibit-modal__location {
+  font-size: 0.82rem;
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-s);
+}
+
+.exhibit-modal__location i {
+  color: var(--color-accent);
+  margin-right: 4px;
+}
+
+.exhibit-modal__desc {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-m);
+}
+
+.exhibit-modal__map-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: var(--radius-s);
+  transition: background 0.2s ease;
+}
+
+.exhibit-modal__map-link:hover {
+  background: var(--color-accent-dark);
+}
+
+/* ---------- タブレット以上:グリッドをやや大きめに ---------- */
+@media (min-width: 768px) {
+  .exhibits-grid {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: var(--space-m);
   }
 }

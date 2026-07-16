@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>展示索引 | 第78回 松柏祭</title>
+  <meta name="description" content="第78回 松柏祭の展示・模擬店・ステージ企画の一覧です。クラス名や部活名、キーワードで検索できます。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- サイト共通スタイル(index.htmlと同じものを参照) -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ============ 背景装飾(半透明の丸・トップページと共通) ============ -->
+  <div class="bg-decoration" aria-hidden="true">
+    <span class="circle c1"></span>
+    <span class="circle c2"></span>
+    <span class="circle c3"></span>
+    <span class="circle c4"></span>
+    <span class="circle c5"></span>
+    <span class="circle c6"></span>
+    <span class="circle c7"></span>
+    <span class="circle c8"></span>
+  </div>
+
+  <!-- ============ ページヘッダー(戻る導線+タイトル・常に画面上部に固定) ============ -->
+  <header class="page-header">
+    <a href="../index.html" class="page-header__back" aria-label="トップページに戻る">
+      <i class="fa-solid fa-chevron-left"></i>
+    </a>
+    <p class="page-header__title">展示索引</p>
+    <span class="page-header__spacer" aria-hidden="true"></span>
+  </header>
+
+  <div class="page-content">
+    <main class="exhibits-page">
+
+      <!-- ============ 検索・カテゴリー絞り込み ============ -->
+      <section class="exhibits-search fade-in-section" aria-label="展示を検索">
+        <label class="exhibits-search__box">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input
+            type="search"
+            id="exhibit-search-input"
+            placeholder="クラス名・部活名・キーワードで検索"
+            aria-label="展示・模擬店・ステージ企画を検索"
+          >
+        </label>
+
+        <!-- カテゴリーチップはJSで自動生成(すべて/教室展示/文化部展示/模擬店/ステージ企画) -->
+        <div class="exhibits-filter" id="exhibit-filter-chips"></div>
+
+        <p class="exhibits-search__count" id="exhibit-result-count" aria-live="polite"></p>
+      </section>
+
+      <!-- ============ タイル一覧(60件・写真+タイトル) ============ -->
+      <section class="exhibits-grid-section fade-in-section" aria-label="展示一覧">
+        <div class="exhibits-grid" id="exhibits-grid">
+          <!-- JS(exhibits.js)がここにタイルを描画します -->
+        </div>
+        <p class="exhibits-empty" id="exhibits-empty" hidden>
+          該当する展示が見つかりませんでした。キーワードを変えてお試しください。
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <!-- ============ 詳細モーダル(タイルタップで表示) ============ -->
+  <div class="exhibit-modal" id="exhibit-modal" aria-hidden="true">
+    <div class="exhibit-modal__backdrop" data-close-modal></div>
+    <div class="exhibit-modal__panel" role="dialog" aria-modal="true" aria-labelledby="exhibit-modal-title">
+      <button class="exhibit-modal__close" type="button" data-close-modal aria-label="閉じる">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="exhibit-modal__image" aria-hidden="true">
+        <i class="fa-regular fa-image"></i>
+      </div>
+
+      <p class="exhibit-modal__tag" id="exhibit-modal-tag"></p>
+      <h2 class="exhibit-modal__title" id="exhibit-modal-title"></h2>
+      <p class="exhibit-modal__location" id="exhibit-modal-location"></p>
+      <p class="exhibit-modal__desc" id="exhibit-modal-desc"></p>
+
+      <!-- マップページ側の実装完了後、?spot=id を読み取って該当ピンを開く想定 -->
+      <a class="exhibit-modal__map-link" id="exhibit-modal-map-link" href="map.html">
+        <i class="fa-solid fa-map-location-dot"></i>
+        マップで場所を見る
+      </a>
+    </div>
+  </div>
+
+  <!-- ============ 下部タブバー(トップページと共通・「展示索引」をアクティブに) ============ -->
+  <nav class="tab-bar" aria-label="下部ナビゲーション">
+    <a href="../index.html#hero" class="tab-item" data-tab="home">
+      <i class="fa-solid fa-house"></i>
+      <span>ホーム</span>
+    </a>
+    <a href="timetable.html" class="tab-item" data-tab="timetable">
+      <i class="fa-regular fa-clock"></i>
+      <span>日程</span>
+    </a>
+    <a href="map.html" class="tab-item tab-item--center" data-tab="map">
+      <i class="fa-solid fa-map"></i>
+      <span>マップ</span>
+    </a>
+    <a href="exhibits.html" class="tab-item is-active" data-tab="exhibits">
+      <i class="fa-solid fa-list-ul"></i>
+      <span>展示索引</span>
+    </a>
+    <a href="news.html" class="tab-item" data-tab="more">
+      <i class="fa-solid fa-ellipsis"></i>
+      <span>整理券</span>
+    </a>
+  </nav>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/exhibits-data.js"></script>
+  <script src="../js/exhibits.js"></script>
+</body>
+</html>
