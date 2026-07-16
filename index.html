@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>第78回 松柏祭 | 岡山操山 松柏祭 公式案内サイト</title>
+  <meta name="description" content="岡山操山高等学校 第78回 松柏祭の公式案内サイト。タイムテーブル・マップ・展示情報・お知らせをご案内します。">
+
+  <!-- Google Fonts: 丸みのある見出し/本文フォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome(アイコン) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- サイト共通スタイル -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ 起動時スプラッシュ(白背景→ページへゆっくり切り替え) ============ -->
+  <!-- ロゴは .hero__logo と全く同じ配置ルールを使うことで、
+       スプラッシュ表示時とHero本体表示時でロゴの位置・大きさが完全に一致するようにしている -->
+  <div class="splash" id="splash" aria-hidden="true">
+    <img class="hero__logo splash__logo" src="images/logo-shohakusai.svg" alt="">
+  </div>
+
+  <!-- ============ 背景装飾(半透明の丸) ============ -->
+  <!-- aria-hidden: 装飾要素のためスクリーンリーダーからは非表示 -->
+  <div class="bg-decoration" aria-hidden="true">
+    <span class="circle c1"></span>
+    <span class="circle c2"></span>
+    <span class="circle c3"></span>
+    <span class="circle c4"></span>
+    <span class="circle c5"></span>
+    <span class="circle c6"></span>
+    <span class="circle c7"></span>
+    <span class="circle c8"></span>
+  </div>
+
+  <!-- ============ Hero セクション ============ -->
+  <header class="hero" id="hero">
+    <img class="hero__logo" src="images/logo-shohakusai.svg" alt="第78回 岡山操山 松柏祭 ロゴ">
+
+    <!-- スクロールを促す矢印アニメーション -->
+    <div class="hero__scroll" aria-hidden="true">
+      <i class="fa-solid fa-chevron-down"></i>
+      <i class="fa-solid fa-chevron-down"></i>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <!-- Heroを抜けると、この帯がそのままの位置・デザインで画面上部に固定される(id="hero-footer-bar") -->
+    <div class="hero__footer-bar" id="hero-footer-bar">
+      <span class="badge">第78回</span>
+      <span class="title">松柏祭</span>
+    </div>
+  </header>
+
+  <!-- ============ メインコンテンツ(PCでは中央寄せ幅を持たせる) ============ -->
+  <div class="page-content">
+    <main>
+      <!-- ============ カウントダウン ============ -->
+      <section class="countdown fade-in-section" aria-label="開会式カウントダウン">
+        <p class="countdown__label">開会式まであと</p>
+        <div class="countdown__card">
+          <p class="countdown__number">
+            <span id="countdown-days">--</span><span class="countdown__unit">日</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ メニュー(タイムテーブル/マップ/展示) ============ -->
+      <nav class="menu-buttons fade-in-section" aria-label="主要メニュー">
+        <a href="pages/timetable.html" class="menu-btn">
+          <span class="menu-btn__circle"><i class="fa-regular fa-clock"></i></span>
+          <span class="menu-btn__label">タイムテーブル</span>
+        </a>
+        <a href="pages/map.html" class="menu-btn">
+          <span class="menu-btn__circle"><i class="fa-solid fa-map"></i></span>
+          <span class="menu-btn__label">マップアプリ</span>
+        </a>
+        <a href="pages/exhibits.html" class="menu-btn">
+          <span class="menu-btn__circle"><i class="fa-solid fa-list-ul"></i></span>
+          <span class="menu-btn__label">展示索引</span>
+        </a>
+      </nav>
+
+      <!-- ============ 主な日程 ============ -->
+      <section class="schedule fade-in-section" aria-label="主な日程">
+        <p class="pill-btn">主な日程</p>
+        <div class="schedule__grid">
+          <div class="schedule__day">
+            <p class="schedule__date">9月4日</p>
+            <p class="schedule__note">生徒・保護者のみ</p>
+            <ul class="schedule__list">
+              <li>開会式</li>
+              <li>中学合唱</li>
+              <li>操山王</li>
+              <li>高2ステージ発表</li>
+            </ul>
+          </div>
+          <div class="schedule__day">
+            <p class="schedule__date">9月5日</p>
+            <p class="schedule__note">一般開放</p>
+            <ul class="schedule__list">
+              <li>高1クラス展示</li>
+              <li>文化部等展示</li>
+              <li>模擬店</li>
+            </ul>
+          </div>
+          <div class="schedule__day">
+            <p class="schedule__date">9月7日</p>
+            <p class="schedule__note">生徒・保護者のみ</p>
+            <ul class="schedule__list">
+              <li>体育の部</li>
+              <li>高3アリーナ演技</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 全体テーマ=========== -->
+      <section class="theme-section fade-in-section" aria-label="全体テーマ">
+        <p class="pill-btn">全体テーマ</p>
+        <div class="theme-section__body">
+          <img class="theme-section__logo" src="images/logo-capioneer.svg" alt="全体テーマ Capioneer ロゴ">
+          <p class="theme-section__desc">
+            CaPioneerは、「Capacity(個性や力を最大限に発揮する)」と「Pioneer(新しい道を切り拓く)」を組み合わせた言葉です。一人ひとりが主役となり、挑戦と協力を通して、思い出に残る松柏祭をつくりたいという思いが込められています。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ NEWS ============ -->
+      <section class="news fade-in-section" aria-label="お知らせ一覧">
+        <p class="pill-btn">NEWS</p>
+        <div class="news__grid">
+          <a class="news__item" href="pages/news.html">
+            <span class="news__placeholder"></span>
+          </a>
+          <a class="news__item" href="pages/news.html">
+            <span class="news__placeholder"></span>
+          </a>
+          <a class="news__item" href="pages/news.html">
+            <span class="news__placeholder"></span>
+          </a>
+        </div>
+        <a class="news__viewall" href="pages/news.html">すべて表示</a>
+      </section>
+
+      <!-- ============ SNS・他 ============ -->
+      <section class="sns fade-in-section" aria-label="SNS・その他リンク">
+        <p class="pill-btn">SNS・他</p>
+        <div class="sns__grid">
+          <a class="sns__item" href="https://www.sozan.okayama-c.ed.jp/" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--school"><i class=""></i></span>
+            <span class="sns__label">岡山操山高等学校<br>HP</span>
+          </a>
+          <a class="sns__item" href="https://www.sozan-jhs.okayama-c.ed.jp/" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--school"><i class=""></i></span>
+            <span class="sns__label">岡山操山中学校<br>HP</span>
+          </a>
+          <a class="sns__item" href="https://www.instagram.com/sozankou_shouhaku?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--school"><i class="fa-brands fa-instagram"></i></span>
+            <span class="sns__label">岡山操山高等学校<br>Instagram</span>
+          </a>
+          <a class="sns__item" href="https://www.facebook.com/okayama.sozan" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--school"><i class="fa-brands fa-facebook-f"></i></span>
+            <span class="sns__label">岡山操山高等学校<br>Facebook</span>
+          </a>
+          <a class="sns__item" href="https://www.instagram.com/sozanjhs01?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--junior"><i class="fa-brands fa-instagram"></i></span>
+            <span class="sns__label">岡山操山中学校<br>Instagram</span>
+          </a>
+          <a class="sns__item" href="https://www.facebook.com/sozanjhs/" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--junior"><i class="fa-brands fa-facebook-f"></i></span>
+            <span class="sns__label">岡山操山中学校<br>Facebook</span>
+          </a>
+          <a class="sns__item" href="https://www.instagram.com/sozanseitokai?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
+            <span class="sns__icon sns__icon--capioneer"><i class="fa-brands fa-instagram"></i></span>
+            <span class="sns__label">岡山操山高校生徒会執行部<br>Instagram</span>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ============ フッター============ -->
+  <footer class="site-footer fade-in-section">
+    <p class="footer-title">第78回 松柏祭</p>
+    <ul class="footer-links">
+      <li>開催概要</li>
+      <li>アクセス</li>
+      <li>お問い合わせ</li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 岡山操山高等学校・中学校 松柏祭技術部有志</p>
+  </footer>
+
+  <!-- =====-======= 下部タブバー(画面最下部固定) ============ -->
+  <nav class="tab-bar" aria-label="下部ナビゲーション">
+    <a href="#hero" class="tab-item is-active" data-tab="home">
+      <i class="fa-solid fa-house"></i>
+      <span>ホーム</span>
+    </a>
+    <a href="pages/timetable.html" class="tab-item" data-tab="timetable">
+      <i class="fa-regular fa-clock"></i>
+      <span>日程</span>
+    </a>
+    <a href="pages/map.html" class="tab-item tab-item--center" data-tab="map">
+      <i class="fa-solid fa-map"></i>
+      <span>マップ</span>
+    </a>
+    <a href="pages/exhibits.html" class="tab-item" data-tab="exhibits">
+      <i class="fa-solid fa-list-ul"></i>
+      <span>展示索引</span>
+    </a>
+    <a href="pages/news.html" class="tab-item" data-tab="more">
+      <i class="fa-solid fa-ellipsis"></i>
+      <span>整理券</span>
+    </a>
+  </nav>
+  <script src="js/script.js"></script>
+</body>
+</html>
